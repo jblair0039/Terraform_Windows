@@ -2,7 +2,7 @@ resource "google_compute_instance" "vm_instance_public" {
   name         = "jordandev-vm"
   machine_type = var.windows_instance_type
   zone         = var.gcp_zone
-  hostname     = "jordandev-vm"
+  hostname     = "jordandev-vm.jordan.com"
   tags         = ["rdp","http"]
   boot_disk {
     initialize_params {
@@ -27,7 +27,7 @@ resource "google_compute_instance" "vm_instance_public2" {
   name         = "jordandev2-vm"
   machine_type = var.windows_instance_type
   zone         = var.gcp_zone
-  hostname     = "jordandev2-vm"
+  hostname     = "jordandev2-vm.jordan.com"
   tags         = ["rdp","http"]
   boot_disk {
     initialize_params {
