@@ -10,12 +10,7 @@ resource "google_compute_instance" "vm_instance_public" {
     }
   }
   metadata = {
-    windows-startup-script-ps1 = <<-EOF
-      "#Start listening on a port 
-$Listener = [System.Net.Sockets.TcpListener]80;
-$Listener.Start();
-#wait, try connect from another PC etc."
-    EOF
+    sysprep-specialize-script-ps1 = data.template_file.windows-metadata.rendered
   }
   network_interface {
     network       = google_compute_network.vpc.name
@@ -35,12 +30,7 @@ resource "google_compute_instance" "vm_instance_public2" {
     }
   }
   metadata = {
-    windows-startup-script-ps1 = <<-EOF
-      "#Start listening on a port 
-$Listener = [System.Net.Sockets.TcpListener]80;
-$Listener.Start();
-#wait, try connect from another PC etc."
-    EOF
+    sysprep-specialize-script-ps1 = data.template_file.windows-metadata.rendered
   }
   network_interface {
     network       = google_compute_network.vpc.name
