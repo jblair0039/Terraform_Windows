@@ -10,7 +10,17 @@ resource "google_compute_instance" "vm_instance_public" {
     }
   }
   metadata = {
-    sysprep-specialize-script-ps1 = data.template_file.windows-metadata.rendered
+    windows-startup-script-ps1 = <<script
+    # Installing IIS
+Import-Module servermanager
+Install-WindowsFeature Web-Server -IncludeAllSubFeature
+
+# Ensure the directory exists
+if (-not (Test-Path("C:\inetpub\wwwroot"))) {New-Item "C:\inetpub\wwwroot" -Type Directory}
+
+# Write the expanded string out to the file, overwriting the file if it already exists.
+"<html><body><p>Windows startup script added directly.</p></body></html>" | Out-File -FilePath C:\inetpub\wwwroot\index.html -Encoding ascii -Force
+    script 
   }
   network_interface {
     network       = google_compute_network.vpc.name
@@ -30,7 +40,7 @@ resource "google_compute_instance" "vm_instance_public2" {
     }
   }
   metadata = {
-    sysprep-specialize-script-ps1 = data.template_file.windows-metadata.rendered
+    
   }
   network_interface {
     network       = google_compute_network.vpc.name
