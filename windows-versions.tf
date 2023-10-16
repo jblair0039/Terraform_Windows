@@ -8,6 +8,11 @@ variable "windows_2016_sku" {
   description = "SKU for Windows Server 2016"
   default     = "windows-cloud/windows-2016"
 }
+variable "windows_2016core_sku" {
+  type        = string
+  description = "SKU for Windows Server 2016 Core"
+  default     = "windows-cloud/windows-2016-core"
+}
 variable "windows_2019_sku" {
   type        = string
   description = "SKU for Windows Server 2019"
