@@ -20,7 +20,7 @@ zone    = var.gcp_zone
 }
 
 provider "ultradns" {
- username = "jblair0039"
+ username = "username"
  password = "INSERTPASSWORD"
  hosturl = "https://api.ultradns.com/"
 }
